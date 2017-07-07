@@ -25,9 +25,18 @@ var character2 = new character(120, 8, 12);
 var character3 = new character(150, 10, 17);
 var character4 = new character(200, 6, 10);
 
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < 5; i++) {
 	console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
 	character1.attack(character3);
+}
+for (var i = 0; i < 2; i++) {
+	console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
+	character1.attack(character2);
+}
+
+for (var i = 0; i < 2; i++) {
+	console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
+	character1.attack(character4);
 }
 
 function gameOver(){
@@ -36,4 +45,8 @@ function gameOver(){
 	-enable a reset button.
 	-disable the attack button.
 	*/
+}
+
+function reset(){
+	//TODO reset all variables to base values. 
 }
