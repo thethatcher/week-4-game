@@ -1,0 +1,20 @@
+body{
+	background-image: url("../images/background.png");
+	color: white;
+}
+
+.character{
+	background-color: white;
+	border: 3px solid green;
+	margin: 10px;
+	text-align: center;
+	color: black;
+}
+
+hr{
+	margin: 1px;
+}
+
+.character:hover{
+	cursor: pointer;
+}

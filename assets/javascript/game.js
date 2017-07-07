@@ -7,9 +7,11 @@ var character1 = new character(100, 10, 20);
 var character2 = new character(120, 8, 12);
 var character3 = new character(150, 10, 17);
 var character4 = new character(200, 6, 10);
+var activePlayerCharacter;
+var activeEnemyCharacter;
 
 
-function character(hp, attack, counterAttack){
+function character(hp, attack, counterAttack){ //constructor for the character objects. 
 	this.healthPoints = hp;
 	this.attackPower = attack;
 	this.baseAttackPower = attack;
@@ -35,6 +37,27 @@ function character(hp, attack, counterAttack){
 	}
 }
 
+//character listener for clicks. 
+$(".character").on("click", function(){
+	/*TODO 
+	-move the clicked character to the appropriate place
+	-assign player character or enemy object to be active. 
+	*/
+	if (characterSelectEnabled) {
+		console.log('character selected');
+		if ($(this).attr("dataAttribute") === "character1"){activePlayerCharacter = character1;}
+		else if ($(this).attr("dataAttribute") === "character2") {activePlayerCharacter = character2;}
+		else if ($(this).attr("dataAttribute") === "character3") {activePlayerCharacter = character3;}
+		else if ($(this).attr("dataAttribute") === "character4") {activePlayerCharacter = character4;}
+		console.log(activePlayerCharacter);
+	}
+	else if (enemySelectEnabled) {
+
+	}
+});
+
+
+//global functions
 function enableAttackBtn(){
 	$(".btn-danger").css("background-color","");
 	attackBtnEnabled = true;
@@ -72,4 +95,4 @@ enableAttackBtn();
 		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
 		character1.attack(character4);
 	}
-disableAttackBtn();
+
