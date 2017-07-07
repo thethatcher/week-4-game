@@ -3,9 +3,18 @@ body{
 	color: white;
 }
 
-.character{
+.character,
+.player{
 	background-color: white;
 	border: 3px solid green;
+	margin: 10px;
+	text-align: center;
+	color: black;
+}
+
+.enemy{
+	background-color: white;
+	border: 3px solid red;
 	margin: 10px;
 	text-align: center;
 	color: black;

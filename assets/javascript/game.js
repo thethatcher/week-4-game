@@ -9,6 +9,7 @@ var character3 = new character(150, 10, 17);
 var character4 = new character(200, 6, 10);
 var activePlayerCharacter;
 var activeEnemyCharacter;
+var availableEnemyCount = 3;
 
 
 function character(hp, attack, counterAttack){ //constructor for the character objects. 
@@ -40,19 +41,68 @@ function character(hp, attack, counterAttack){ //constructor for the character o
 //character listener for clicks. 
 $(".character").on("click", function(){
 	/*TODO 
-	-move the clicked character to the appropriate place
-	-assign player character or enemy object to be active. 
+	-move all other characters to the enemySpace
 	*/
 	if (characterSelectEnabled) {
 		console.log('character selected');
-		if ($(this).attr("dataAttribute") === "character1"){activePlayerCharacter = character1;}
-		else if ($(this).attr("dataAttribute") === "character2") {activePlayerCharacter = character2;}
-		else if ($(this).attr("dataAttribute") === "character3") {activePlayerCharacter = character3;}
-		else if ($(this).attr("dataAttribute") === "character4") {activePlayerCharacter = character4;}
+		if ($(this).attr("dataAttribute") === "character1"){
+			activePlayerCharacter = character1;
+			$(this).addClass('player');
+			$(this).removeClass('character');
+			for(var i = 0; i < availableEnemyCount; i++){
+				var tempChar = $(".character");
+				tempChar.addClass('enemy');
+				tempChar.removeClass('character');
+				tempChar.appendTo($('.enemySpace'));
+			}
+		}
+		else if ($(this).attr("dataAttribute") === "character2") {
+			activePlayerCharacter = character2;
+			$(this).addClass('player');
+			$(this).removeClass('character');
+			for(var i = 0; i < availableEnemyCount; i++){
+				var tempChar = $(".character");
+				tempChar.addClass('enemy');
+				tempChar.removeClass('character');
+				tempChar.appendTo($('.enemySpace'));
+			}
+		}
+		else if ($(this).attr("dataAttribute") === "character3") {
+			activePlayerCharacter = character3;
+			$(this).addClass('player');
+			$(this).removeClass('character');
+			for(var i = 0; i < availableEnemyCount; i++){
+				var tempChar = $(".character");
+				tempChar.addClass('enemy');
+				tempChar.removeClass('character');
+				tempChar.appendTo($('.enemySpace'));
+			}
+		}
+		else if ($(this).attr("dataAttribute") === "character4") {
+			activePlayerCharacter = character4;
+			$(this).addClass('player');
+			$(this).removeClass('character');
+			for(var i = 0; i < availableEnemyCount; i++){
+				var tempChar = $(".character");
+				tempChar.addClass('enemy');
+				tempChar.removeClass('character');
+				tempChar.appendTo($('.enemySpace'));
+			}
+		}
 		console.log(activePlayerCharacter);
+		characterSelectEnabled = false;
+		enemySelectEnabled = true;
+		$(this).appendTo($(".playerSpace"));
+
 	}
 	else if (enemySelectEnabled) {
-
+		if ($(this).attr("dataAttribute") === "character1"){activeEnemyCharacter = character1;}
+		else if ($(this).attr("dataAttribute") === "character2") {activeEnemyCharacter = character2;}
+		else if ($(this).attr("dataAttribute") === "character3") {activeEnemyCharacter = character3;}
+		else if ($(this).attr("dataAttribute") === "character4") {activeEnemyCharacter = character4;}
+		enemySelectEnabled = false;
+		attackBtnEnabled = true;
+		$(this).prependTo($(".activeEnemySpace"));
 	}
 });
 
@@ -81,18 +131,18 @@ function reset(){
 
 
 //test block
-enableAttackBtn();
-	for (var i = 0; i < 5; i++) {
-		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
-		character1.attack(character3);
-	}
-	for (var i = 0; i < 2; i++) {
-		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
-		character1.attack(character2);
-	}
+// enableAttackBtn();
+// 	for (var i = 0; i < 5; i++) {
+// 		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
+// 		character1.attack(character3);
+// 	}
+// 	for (var i = 0; i < 2; i++) {
+// 		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
+// 		character1.attack(character2);
+// 	}
 
-	for (var i = 0; i < 2; i++) {
-		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
-		character1.attack(character4);
-	}
+// 	for (var i = 0; i < 2; i++) {
+// 		console.log("-----------------------\nturn " + (i+1) + "\n-----------------------"); 
+// 		character1.attack(character4);
+// 	}
 
