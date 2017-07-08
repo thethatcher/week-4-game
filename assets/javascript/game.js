@@ -28,25 +28,29 @@ function character(hp, attack, counterAttack, $display){ //constructor for the c
 	//start object functions
 	this.attack = function(opponent){
 		if (attackBtnEnabled) {
+			var fightString = "";
 			opponent.healthPoints -= this.attackPower; console.log("Opponent HP: " + opponent.healthPoints);
 			opponent.updateHp();
+			fightString += "<p>You attacked your opponent for " + this.attackPower + " damage.</p>"; //building the fight update message.
 			this.attackPower += this.baseAttackPower; console.log("Your attack power: " + this.attackPower);
 			if(opponent.healthPoints >0){
 				this.healthPoints -= opponent.counterAttackPower; console.log("your hp: " + this.healthPoints);
 				this.updateHp();
+				fightString += "<p>Your opponent dealt " + opponent.counterAttackPower + " damage to you.</p>"; //building the fight update message.
 				if(this.healthPoints <= 0){
 					gameOver(); console.log("game-over. your HP is <= 0");
+					fightString += "<p>You have been dealt a lethal blow.</p><p>Game Over.</p>"; //building the fight update message.
 				}
 			}
-			else if(opponent.healthPoints <= 0){
-				//TODO remove opponent. Enable opponent selection. 
+			else if(opponent.healthPoints <= 0){ 
 				console.log("opponent defeated.")
 				opponent.$display.remove();
 				availableEnemyCount--;
 				enemySelectEnabled = true;
 				disableAttackBtn();
+				fightString += "<p>Your opponent falls to your strike.</p><p>Pick your next victim.</p>" //building the fight update message.
 			}
-
+			$('#fightText').html(fightString);
 		}
 	}
 	this.updateHp = function(){
@@ -59,12 +63,14 @@ function character(hp, attack, counterAttack, $display){ //constructor for the c
 $(".character").on("click", function(){
 	if (characterSelectEnabled) {
 		console.log('character selected');
-		if ($(this).attr("dataAttribute") === "character1"){
+		if (($(this).attr("dataAttribute") === "character1")){
 			activePlayerCharacter = character1;
+			activePlayerCharacter.playerCharacter = true;
 			$(this).addClass('player');
 			$(this).removeClass('character');
 			$(this).addClass('col');
-			$(this).removeClass('col-sm-2');			
+			$(this).removeClass('col-sm-2');
+			$(this).attr('data-character-type','player')			
 			for(var i = 0; i < availableEnemyCount; i++){ //moving all other characters to the available enemy box. 
 				var tempChar = $(".character");
 				tempChar.addClass('enemy');
@@ -72,12 +78,14 @@ $(".character").on("click", function(){
 				tempChar.appendTo($('.enemySpace'));
 			}
 		}
-		else if ($(this).attr("dataAttribute") === "character2") {
+		else if (($(this).attr("dataAttribute") === "character2")) {
 			activePlayerCharacter = character2;
+			activePlayerCharacter.playerCharacter = true;
 			$(this).addClass('player');
 			$(this).removeClass('character');
 			$(this).addClass('col');
 			$(this).removeClass('col-sm-2');
+			$(this).attr('data-character-type','player')
 			for(var i = 0; i < availableEnemyCount; i++){
 				var tempChar = $(".character");
 				tempChar.addClass('enemy');
@@ -85,12 +93,14 @@ $(".character").on("click", function(){
 				tempChar.appendTo($('.enemySpace'));
 			}
 		}
-		else if ($(this).attr("dataAttribute") === "character3") {
+		else if (($(this).attr("dataAttribute") === "character3")) {
 			activePlayerCharacter = character3;
+			activePlayerCharacter.playerCharacter = true;
 			$(this).addClass('player');
 			$(this).removeClass('character');
 			$(this).addClass('col');
 			$(this).removeClass('col-sm-2');
+			$(this).attr('data-character-type','player')
 			for(var i = 0; i < availableEnemyCount; i++){
 				var tempChar = $(".character");
 				tempChar.addClass('enemy');
@@ -98,12 +108,14 @@ $(".character").on("click", function(){
 				tempChar.appendTo($('.enemySpace'));
 			}
 		}
-		else if ($(this).attr("dataAttribute") === "character4") {
+		else if (($(this).attr("dataAttribute") === "character4")) {
 			activePlayerCharacter = character4;
+			activePlayerCharacter.playerCharacter = true;
 			$(this).addClass('player');
 			$(this).removeClass('character');
 			$(this).addClass('col');
 			$(this).removeClass('col-sm-2');
+			$(this).attr('data-character-type','player')
 			for(var i = 0; i < availableEnemyCount; i++){
 				var tempChar = $(".character");
 				tempChar.addClass('enemy');
@@ -117,17 +129,19 @@ $(".character").on("click", function(){
 		$(this).appendTo($(".playerSpace"));
 	}
 	else if (enemySelectEnabled) {
-		if ($(this).attr("dataAttribute") === "character1"){activeEnemyCharacter = character1;}
-		else if ($(this).attr("dataAttribute") === "character2") {activeEnemyCharacter = character2;}
-		else if ($(this).attr("dataAttribute") === "character3") {activeEnemyCharacter = character3;}
-		else if ($(this).attr("dataAttribute") === "character4") {activeEnemyCharacter = character4;}
-		enemySelectEnabled = false;
-		enableAttackBtn();
-		$(this).prependTo($(".activeEnemySpace"));
-		$(this).addClass('activeEnemy');
-		$(this).removeClass('enemy');
-		$(this).addClass('col');
-		$(this).removeClass('col-sm-2');
+		if ($(this).attr('data-character-type') != 'player') {	
+			if ($(this).attr("dataAttribute") === "character1"){activeEnemyCharacter = character1;}
+			else if ($(this).attr("dataAttribute") === "character2") {activeEnemyCharacter = character2;}
+			else if ($(this).attr("dataAttribute") === "character3") {activeEnemyCharacter = character3;}
+			else if ($(this).attr("dataAttribute") === "character4") {activeEnemyCharacter = character4;}
+			enemySelectEnabled = false;
+			enableAttackBtn();
+			$(this).prependTo($(".activeEnemySpace"));
+			$(this).addClass('activeEnemy');
+			$(this).removeClass('enemy');
+			$(this).addClass('col');
+			$(this).removeClass('col-sm-2');
+		}
 	}
 });
 
