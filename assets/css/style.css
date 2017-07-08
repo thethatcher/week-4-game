@@ -1,6 +1,7 @@
 body{
 	background-image: url("../images/background.png");
 	color: white;
+	text-align: center;
 }
 
 .character,
@@ -13,17 +14,32 @@ body{
 }
 
 .enemy{
-	background-color: white;
-	border: 3px solid red;
+	background-color: red;
+	border: 3px solid black;
 	margin: 10px;
 	text-align: center;
 	color: black;
+}
+
+.activeEnemy{
+	background-color: black;
+	border: 3px solid green;
+	margin: 10px;
+	text-align: center;
+	color: white;
 }
 
 hr{
 	margin: 1px;
 }
 
-.character:hover{
+.character:hover,
+.enemy:hover{
 	cursor: pointer;
+}
+
+#vs{
+	font-size: 25px;
+	color: red;
+	text-align: center;
 }

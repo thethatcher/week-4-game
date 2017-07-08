@@ -14,49 +14,55 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-2 character" dataAttribute="character1">
+			<div class="col-sm-2 character" id="character1" dataAttribute="character1">
 				<p>Obi-Wan Kenobi</p>
 				<img src="assets/images/obi-wan.jpg" width="100px" class="center-block">
-				<p class="healthDisplay"></p>
+				<p id="healthDisplay1" class="healthdisplay"></p>
 			</div>
-			<div class="col-sm-2 character" dataAttribute="character2">
+			<div class="col-sm-2 character" id="character2" dataAttribute="character2">
 				<p>Mace Windu</p>
 				<img src="assets/images/mace.jpg" width="100px" class="center-block">
-				<p class="healthDisplay"></p>
+				<p id="healthDisplay2" class="healthdisplay"></p>
 			</div>
-			<div class="col-sm-2 character" dataAttribute="character3">
+			<div class="col-sm-2 character" id="character3" dataAttribute="character3">
 				<p>Darth Vader</p>
 				<img src="assets/images/vader.jpg" width="100px" class="center-block">
-				<p class="healthDisplay"></p>
+				<p id="healthDisplay3" class="healthdisplay"></p>
 			</div>
-			<div class="col-sm-2 character" dataAttribute="character4">
+			<div class="col-sm-2 character" id="character4" dataAttribute="character4">
 				<p>Luke Skywalker</p>
 				<img src="assets/images/luke.jpg" width="100px" class="center-block">
-				<p class="healthDisplay"></p>
+				<p id="healthDisplay4" class="healthdisplay"></p>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-12 playerSpace">
+			<div class="col-sm-5 playerSpace">
 				<h2>Your Character</h2>
 			</div>
+			<div class="col-sm-2" id="vs">
+				<br><br><br>
+				<p>- VS -</p>
+			</div>
+			<div class="col-sm-5">
+				<h2>Defender</h2>
+				<div class="activeEnemySpace"></div>
+			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Fight Section</h2>
+				<button class="btn btn-danger">Attack</button>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-sm-12 enemySpace">
 				<h2>Enemies Available to Attack</h2>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>Fight Section</h2>
-				<div class="activeEnemySpace"></div>
-				<button class="btn btn-danger">Attack</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>Defender</h2>
-			</div>
-		</div>
+		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
