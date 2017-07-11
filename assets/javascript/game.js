@@ -10,6 +10,7 @@ var character4 = new character(170, 5, 10, $("#character4"));
 var activePlayerCharacter;
 var activeEnemyCharacter;
 var availableEnemyCount = 3;
+disableAttackBtn();
 
 //fill in the HP for the characters
 $("#healthDisplay1").text(character1.healthPoints);
@@ -39,6 +40,7 @@ function character(hp, attack, counterAttack, $display){ //constructor for the c
 				fightString += "<p>Your opponent dealt " + opponent.counterAttackPower + " damage to you.</p>"; //building the fight update message.
 				if(this.healthPoints <= 0){
 					gameOver(); console.log("game-over. your HP is <= 0");
+					disableAttackBtn();
 					fightString += "<p>You have been dealt a lethal blow.</p><p>Game Over.</p>"; //building the fight update message.
 				}
 			}
@@ -48,7 +50,12 @@ function character(hp, attack, counterAttack, $display){ //constructor for the c
 				availableEnemyCount--;
 				enemySelectEnabled = true;
 				disableAttackBtn();
+				if(availableEnemyCount>0){
 				fightString += "<p>Your opponent falls to your strike.</p><p>Pick your next victim.</p>" //building the fight update message.
+				}
+				else if(availableEnemyCount === 0){
+					fightString += "<p>Your final opponent falls against your strength.</p><p>Congratulations, you are the last jedi</p>"; //building the fight update message.
+				}
 			}
 			$('#fightText').html(fightString);
 		}
@@ -172,6 +179,7 @@ function gameOver(){
 
 function reset(){
 	//TODO reset all variables to base values. 
+	//workaround with a page refresh
 }
 
 
